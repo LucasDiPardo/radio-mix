@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Radio Mix</title>
+<meta name="description" content="Radio Mix, la radio online de Chivilcoy. Escuchá en vivo desde el celular o la compu.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --bg-1:#0d1f27;
+    --ink:#0f2029;
+    --card:#152b34;
+    --coral:#ff5470;
+    --coral-deep:#d63a56;
+    --gold:#ffc93c;
+    --turquoise:#2ec4b6;
+    --text:#fff4e0;
+    --text-dim:#9fb8bd;
+    --font-display:'Baloo 2','Segoe UI Rounded',system-ui,sans-serif;
+    --font-body:'Manrope',system-ui,-apple-system,sans-serif;
+    color-scheme:dark;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{height:100%;margin:0;}
+  body{
+    background:
+      radial-gradient(circle at 15% 0%, rgba(255,84,112,.16), transparent 45%),
+      radial-gradient(circle at 90% 15%, rgba(46,196,182,.14), transparent 45%),
+      radial-gradient(circle at 50% 100%, rgba(255,201,60,.08), transparent 50%),
+      var(--bg-1);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    flex-direction:column;
+  }
+  h1{font-family:var(--font-display);margin:0;text-wrap:balance;}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;}
+
+  .wrap{
+    width:100%;
+    max-width:440px;
+    margin:0 auto;
+    padding-inline:20px;
+  }
+
+  .site-header{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:var(--ink);
+    border-bottom:2px solid var(--gold);
+    padding-block:16px;
+    text-align:center;
+  }
+  .wordmark{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:1.3rem;
+    letter-spacing:1px;
+    color:var(--text);
+  }
+  .wordmark em{
+    font-style:normal;
+    color:var(--gold);
+  }
+
+  main{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-block:44px;
+  }
+  .stage{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:22px;
+  }
+
+  .emblem{
+    width:76px;height:76px;
+    border-radius:50%;
+    padding:4px;
+    background:conic-gradient(var(--coral) 0deg 120deg, var(--gold) 120deg 240deg, var(--turquoise) 240deg 360deg);
+  }
+  .emblem-inner{
+    width:100%;height:100%;
+    border-radius:50%;
+    background:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .emblem-inner svg{width:28px;height:28px;fill:var(--gold);}
+
+  .brand-card{
+    width:100%;
+    background:var(--card);
+    border:1px solid rgba(255,201,60,.3);
+    border-radius:22px;
+    padding:26px 24px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+  .brand-card h1{
+    font-size:1.9rem;
+    font-weight:800;
+    letter-spacing:.5px;
+  }
+  .brand-card .rule{
+    width:44px;height:2px;
+    background:var(--gold);
+    border:none;
+    margin:2px 0;
+  }
+  .brand-card .kicker{
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--turquoise);
+  }
+
+  .slogan{
+    text-align:center;
+    font-size:.95rem;
+    color:var(--text-dim);
+    max-width:32ch;
+  }
+
+  .player{
+    width:100%;
+    background:var(--card);
+    border:1px solid rgba(255,244,224,.1);
+    border-radius:18px;
+    padding:18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .play-btn{
+    flex-shrink:0;
+    width:52px;height:52px;
+    border-radius:50%;
+    border:none;
+    background:var(--coral);
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .play-btn:hover{background:var(--coral-deep);}
+  .play-btn:active{transform:scale(.94);}
+  .play-btn.shake{animation:shake .4s ease;}
+  @keyframes shake{
+    0%,100%{transform:translateX(0);}
+    25%{transform:translateX(-4px);}
+    75%{transform:translateX(4px);}
+  }
+  .play-btn svg{width:18px;height:18px;}
+
+  .player-info{flex:1;min-width:0;}
+  .player-info .title{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1rem;
+  }
+  .player-info .status-msg{
+    margin-top:4px;
+    font-size:.8rem;
+    color:var(--text-dim);
+    min-height:1.3em;
+  }
+
+  .social{
+    display:flex;
+    justify-content:center;
+  }
+  .social a{
+    width:46px;height:46px;
+    border-radius:50%;
+    background:var(--card);
+    border:1px solid rgba(255,244,224,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .15s ease;
+  }
+  .social a:hover{background:#1f4a2e;}
+  .social a svg{width:22px;height:22px;fill:#3fd66b;}
+
+  footer{
+    text-align:center;
+    padding-block:20px;
+    font-size:.76rem;
+    color:var(--text-dim);
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wordmark">RADIO M<em>I</em>X</div>
+</header>
+
+<main>
+  <div class="wrap stage">
+    <div class="emblem">
+      <div class="emblem-inner">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+    </div>
+
+    <div class="brand-card">
+      <h1>Radio Mix</h1>
+      <hr class="rule">
+      <span class="kicker">Radio online</span>
+    </div>
+
+    <p class="slogan">Sonando en vivo, las 24 horas.</p>
+
+    <div class="player">
+      <button class="play-btn" id="playBtn" type="button" aria-label="Escuchar Radio Mix en vivo">
+        <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="player-info">
+        <div class="title">Radio Mix — En vivo</div>
+        <div class="status-msg" id="statusMsg">Tocá play para escuchar</div>
+      </div>
+    </div>
+
+    <div class="social">
+      <a href="https://wa.me/5492346481152" target="_blank" rel="noopener" aria-label="WhatsApp Radio Mix">
+        <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.4 1.3-1.93 1.36-.5.06-1.03.28-3.43-.72-2.88-1.19-4.73-4.1-4.87-4.29-.14-.19-1.16-1.55-1.16-2.96 0-1.4.74-2.09 1-2.38.26-.28.57-.35.76-.35h.55c.18 0 .42-.03.65.5.24.55.81 1.94.88 2.08.07.14.12.3.02.49-.1.19-.15.3-.3.47-.14.16-.31.36-.44.48-.14.14-.29.29-.13.57.17.28.75 1.24 1.61 2.01 1.11 1 2.04 1.31 2.32 1.46.28.14.44.12.61-.07.17-.19.72-.83.91-1.12.19-.28.38-.24.63-.14.26.09 1.65.78 1.94.92.28.14.47.21.53.33.07.12.07.68-.16 1.36z"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div id="copyright">© Radio Mix — Todos los derechos reservados</div>
+</footer>
+
+<audio id="audio" preload="none"></audio>
+
+<script>
+  (function(){
+    // Cuando el servicio de streaming (MasServidor) esté aprobado, pegar acá
+    // la URL pública del stream (mp3/aac) para activar la reproducción real.
+    var STREAM_URL = "";
+
+    var playBtn = document.getElementById('playBtn');
+    var playIcon = document.getElementById('playIcon');
+    var statusMsg = document.getElementById('statusMsg');
+    var audio = document.getElementById('audio');
+    var playing = false;
+
+    var ICON_PLAY = '<path d="M8 5v14l11-7z"/>';
+    var ICON_PAUSE = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+
+    function shake(){
+      playBtn.classList.remove('shake');
+      void playBtn.offsetWidth;
+      playBtn.classList.add('shake');
+    }
+
+    playBtn.addEventListener('click', function(){
+      if(!STREAM_URL){
+        shake();
+        statusMsg.textContent = 'Todavía estamos armando la transmisión en vivo. ¡Volvé pronto!';
+        return;
+      }
+
+      if(!playing){
+        if(!audio.src){ audio.src = STREAM_URL; }
+        statusMsg.textContent = 'Conectando…';
+        audio.play().then(function(){
+          playing = true;
+          playIcon.innerHTML = ICON_PAUSE;
+          statusMsg.textContent = 'En vivo';
+        }).catch(function(){
+          shake();
+          statusMsg.textContent = 'No se pudo conectar. Probá de nuevo.';
+        });
+      } else {
+        audio.pause();
+        playing = false;
+        playIcon.innerHTML = ICON_PLAY;
+        statusMsg.textContent = 'Tocá play para escuchar';
+      }
+    });
+
+    audio.addEventListener('error', function(){
+      if(playing){
+        playing = false;
+        playIcon.innerHTML = ICON_PLAY;
+        shake();
+        statusMsg.textContent = 'Se cortó la transmisión. Probá de nuevo.';
+      }
+    });
+
+    try{
+      document.getElementById('copyright').textContent = '© ' + new Date().getFullYear() + ' Radio Mix — Todos los derechos reservados';
+    }catch(e){}
+  })();
+</script>
+</body>
+</html>
