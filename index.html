@@ -233,12 +233,13 @@
 
 <script>
   (function(){
-    // URL pública del stream (Icecast, MasServidor). Solo sirve mientras el
-    // encoder (Opticodec) esté transmitiendo desde la PC de la radio.
+    // URL pública del stream (Icecast, MasServidor) — confirmada en el log
+    // de conexión de Opticodec. Solo sirve mientras el encoder esté
+    // transmitiendo desde la PC de la radio.
     // OJO: es http, no https — si el navegador la bloquea por "contenido
     // mixto" en una página https, hay que pedirle a MasServidor una URL
     // segura (https) para el stream.
-    var STREAM_URL = "http://masservidor.net:8098/stream";
+    var STREAM_URL = "http://masservidor.net:8098/stream.aac";
 
     var playBtn = document.getElementById('playBtn');
     var playIcon = document.getElementById('playIcon');
