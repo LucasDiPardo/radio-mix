@@ -4,19 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Radio Mix</title>
-<meta name="description" content="Radio Mix, la radio online de Chivilcoy. Escuchá en vivo desde el celular o la compu.">
+<meta name="description" content="Radio Mix 104.9 MHz, Chivilcoy. Escuchá en vivo desde el celular o la compu.">
+<link rel="icon" href="assets/logo.jpg" type="image/jpeg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap">
 <style>
   :root{
-    --bg-1:#0d1f27;
-    --ink:#0f2029;
-    --card:#152b34;
-    --coral:#ff5470;
-    --coral-deep:#d63a56;
-    --gold:#ffc93c;
-    --turquoise:#2ec4b6;
-    --text:#fff4e0;
-    --text-dim:#9fb8bd;
+    --bg:#050507;
+    --card:#121016;
+    --violet-a:#5b4fe0;
+    --violet-b:#9a3fae;
+    --violet-solid:#7d49a0;
+    --white:#ffffff;
+    --text-dim:#b3a9c4;
     --font-display:'Baloo 2','Segoe UI Rounded',system-ui,sans-serif;
     --font-body:'Manrope',system-ui,-apple-system,sans-serif;
     color-scheme:dark;
@@ -26,11 +25,10 @@
   html,body{height:100%;margin:0;}
   body{
     background:
-      radial-gradient(circle at 15% 0%, rgba(255,84,112,.16), transparent 45%),
-      radial-gradient(circle at 90% 15%, rgba(46,196,182,.14), transparent 45%),
-      radial-gradient(circle at 50% 100%, rgba(255,201,60,.08), transparent 50%),
-      var(--bg-1);
-    color:var(--text);
+      radial-gradient(circle at 20% 0%, rgba(91,79,224,.18), transparent 45%),
+      radial-gradient(circle at 85% 10%, rgba(154,63,174,.16), transparent 45%),
+      var(--bg);
+    color:var(--white);
     font-family:var(--font-body);
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
@@ -41,6 +39,10 @@
   p{margin:0;}
   a{color:inherit;text-decoration:none;}
   button{font-family:inherit;}
+  .sr-only{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
 
   .wrap{
     width:100%;
@@ -53,21 +55,18 @@
     position:sticky;
     top:0;
     z-index:10;
-    background:var(--ink);
-    border-bottom:2px solid var(--gold);
-    padding-block:16px;
+    background:var(--bg);
+    padding-block:12px;
     text-align:center;
+    border-bottom:2px solid;
+    border-image:linear-gradient(90deg,var(--violet-a),var(--violet-b)) 1;
   }
-  .wordmark{
-    font-family:var(--font-display);
-    font-weight:800;
-    font-size:1.3rem;
-    letter-spacing:1px;
-    color:var(--text);
-  }
-  .wordmark em{
-    font-style:normal;
-    color:var(--gold);
+  .site-header img{
+    height:36px;
+    width:auto;
+    margin:0 auto;
+    display:block;
+    border-radius:8px;
   }
 
   main{
@@ -75,7 +74,7 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    padding-block:44px;
+    padding-block:40px;
   }
   .stage{
     width:100%;
@@ -85,51 +84,32 @@
     gap:22px;
   }
 
-  .emblem{
-    width:76px;height:76px;
-    border-radius:50%;
-    padding:4px;
-    background:conic-gradient(var(--coral) 0deg 120deg, var(--gold) 120deg 240deg, var(--turquoise) 240deg 360deg);
-  }
-  .emblem-inner{
-    width:100%;height:100%;
-    border-radius:50%;
-    background:var(--ink);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .emblem-inner svg{width:28px;height:28px;fill:var(--gold);}
-
   .brand-card{
     width:100%;
     background:var(--card);
-    border:1px solid rgba(255,201,60,.3);
+    border:1px solid rgba(154,63,174,.35);
     border-radius:22px;
-    padding:26px 24px;
+    padding:22px;
     text-align:center;
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:10px;
+    gap:14px;
   }
-  .brand-card h1{
-    font-size:1.9rem;
-    font-weight:800;
-    letter-spacing:.5px;
-  }
-  .brand-card .rule{
-    width:44px;height:2px;
-    background:var(--gold);
-    border:none;
-    margin:2px 0;
+  .brand-card img{
+    width:100%;
+    max-width:280px;
+    border-radius:16px;
   }
   .brand-card .kicker{
-    font-size:.7rem;
+    font-size:.72rem;
     font-weight:700;
     letter-spacing:2px;
     text-transform:uppercase;
-    color:var(--turquoise);
+    background:linear-gradient(90deg,var(--violet-a),var(--violet-b));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
   }
 
   .slogan{
@@ -142,7 +122,7 @@
   .player{
     width:100%;
     background:var(--card);
-    border:1px solid rgba(255,244,224,.1);
+    border:1px solid rgba(255,255,255,.08);
     border-radius:18px;
     padding:18px;
     display:flex;
@@ -154,15 +134,15 @@
     width:52px;height:52px;
     border-radius:50%;
     border:none;
-    background:var(--coral);
-    color:var(--ink);
+    background:linear-gradient(135deg,var(--violet-a),var(--violet-b));
+    color:var(--white);
     display:flex;
     align-items:center;
     justify-content:center;
     cursor:pointer;
-    transition:transform .15s ease, background .15s ease;
+    transition:transform .15s ease, filter .15s ease;
   }
-  .play-btn:hover{background:var(--coral-deep);}
+  .play-btn:hover{filter:brightness(1.15);}
   .play-btn:active{transform:scale(.94);}
   .play-btn.shake{animation:shake .4s ease;}
   @keyframes shake{
@@ -193,7 +173,7 @@
     width:46px;height:46px;
     border-radius:50%;
     background:var(--card);
-    border:1px solid rgba(255,244,224,.15);
+    border:1px solid rgba(255,255,255,.1);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -213,21 +193,16 @@
 <body>
 
 <header class="site-header">
-  <div class="wordmark">RADIO M<em>I</em>X</div>
+  <img src="assets/logo.jpg" alt="Radio Mix 104.9 MHz">
 </header>
 
 <main>
   <div class="wrap stage">
-    <div class="emblem">
-      <div class="emblem-inner">
-        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      </div>
-    </div>
+    <h1 class="sr-only">Radio Mix</h1>
 
     <div class="brand-card">
-      <h1>Radio Mix</h1>
-      <hr class="rule">
-      <span class="kicker">Radio online</span>
+      <img src="assets/logo.jpg" alt="Radio Mix 104.9 MHz">
+      <span class="kicker">104.9 MHz · Chivilcoy</span>
     </div>
 
     <p class="slogan">Sonando en vivo, las 24 horas.</p>
